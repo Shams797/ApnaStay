@@ -101,7 +101,7 @@ app.use(homeController.error)
 const PORT=process.env.PORT || 3000;
 mongoose.connect(DB_PATH).then(()=>{
   console.log("connected to database mongoose successfully");
-  app.listen(port,()=>{
+  app.listen(PORT,()=>{
     console.log(`server is running on port ${PORT}`);
   })
 }).catch(err=>{
