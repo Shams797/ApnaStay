@@ -1,0 +1,152 @@
+<!-- Header -->
+<%- include('../partials/head') %>
+</head>
+
+<body class="bg-gray-100 min-h-screen">
+
+  <!-- Navbar -->
+  <%- include('../partials/nav') %>
+
+  <!-- Hero Section -->
+  <header class="bg-gradient-to-r from-pink-100 via-red-100 to-purple-100 shadow-md">
+    <div class="max-w-7xl mx-auto px-4 py-12 text-center">
+
+      <h2 class="text-4xl sm:text-5xl font-bold text-gray-800">
+        Your Favourite Homes
+      </h2>
+
+      <p class="mt-4 text-gray-600 text-lg">
+        Save and manage your dream stays.
+      </p>
+
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="max-w-7xl mx-auto px-4 py-10">
+
+    <% if (favouriteHome.length > 0) { %>
+
+      <!-- Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+        <% favouriteHome.forEach(home => { %>
+
+          <!-- Card -->
+          <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
+
+            <!-- Image -->
+            <div class="overflow-hidden">
+              <img
+                src="<%= home.photo %>"
+                alt="<%= home.housename %>"
+                class="w-full h-56 object-cover hover:scale-110 transition-transform duration-500"
+              />
+            </div>
+
+            <!-- Content -->
+            <div class="p-5">
+
+              <!-- House Name -->
+              <h3 class="text-2xl font-semibold text-gray-800 mb-3">
+                <%= home.housename %>
+              </h3>
+
+              <!-- Location -->
+              <p class="flex items-center text-gray-600 mb-2">
+                <span class="mr-2">📍</span>
+
+                <span class="font-medium text-gray-700">
+                  <%= home.location %>
+                </span>
+              </p>
+
+              <!-- Price -->
+              <p class="mb-3">
+                <span class="text-2xl font-bold text-green-600">
+                  $<%= home.price %>
+                </span>
+
+                <span class="text-sm text-gray-500">
+                  / night
+                </span>
+              </p>
+
+              <!-- Rating -->
+              <div class="flex items-center gap-1 mb-5">
+                <span class="text-yellow-400 text-xl">★</span>
+
+                <span class="font-medium text-gray-700">
+                  <%= home.rating %>
+                </span>
+              </div>
+
+              <!-- Buttons -->
+              <div class="flex gap-3">
+
+                <!-- View Details -->
+                <a
+                  href="/home/<%= home._id %>"
+                  class="flex-1 bg-blue-500 hover:bg-blue-600 text-white text-center py-2.5 rounded-xl font-medium transition duration-300"
+                >
+                  View Details
+                </a>
+
+                <!-- Remove -->
+                <form
+                  action="/delete-favourite/<%= home._id %>"
+                  method="POST"
+                  class="flex-1"
+                >
+
+                  <button
+                    type="submit"
+                    class="w-full bg-red-500 hover:bg-red-600 text-white py-2.5 rounded-xl font-medium transition duration-300 hover:scale-105 cursor-pointer"
+                  >
+                    Remove
+                  </button>
+
+                </form>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        <% }) %>
+
+      </div>
+
+    <% } else { %>
+
+      <!-- Empty State -->
+      <div class="flex flex-col items-center justify-center py-24 text-center">
+
+        <div class="text-7xl mb-5">
+          ❤️
+        </div>
+
+        <h3 class="text-3xl font-bold text-gray-700 mb-3">
+          No Favourite Homes Yet
+        </h3>
+
+        <p class="text-gray-500 mb-6">
+          Start exploring and save your favourite places.
+        </p>
+
+        <a
+          href="/"
+          class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-xl transition"
+        >
+          Explore Homes
+        </a>
+
+      </div>
+
+    <% } %>
+
+  </main>
+
+</body>
+</html>

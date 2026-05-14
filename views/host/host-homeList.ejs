@@ -1,0 +1,44 @@
+ <!-- header -->
+ <%- include('../partials/head') %>
+  </head>
+  <body>
+      <!-- nav bar -->
+      <%- include('../partials/nav') %>
+  
+<header class="bg-gradient-to-r from-blue-100 to-purple-100 py-8 mb-6 shadow">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-red-500 text-center">Host Home List</h2>
+      </div>
+    </header>
+    <main class="container mx-auto px-4">
+      
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-8">
+        <% registerHome.forEach(home => { %>
+          <div class=" rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
+            <img src="<%= home.photo %>" alt="<%= home.housename %>" class="w-full h-48 object-cover">
+            <div class="p-4">
+              <h3 class="text-lg font-semibold mb-2"><%= home.housename %></h3>
+              <p class="text-gray-600 mb-1">Location: <span class="font-medium"><%= home.location %></span></p>
+              <p class="text-gray-800 mb-1">Price: <span class="text-green-600 font-bold">$<%= home.price %></span></p>
+              <div class="flex items-center mb-2">
+                <span class="text-yellow-400 mr-1">&#9733;</span>
+                <span class="text-gray-700 font-medium"><%= home.rating %></span>
+                
+              </div>
+              <div class="flex gap-2 mt-4">
+
+                <a href="/host/edit-home/<%=home._id%>?editing=true" class=" text-center flex-1 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">Edit</a>
+
+                <form class="flex-1" action="/host/host-homedelete/<%=home._id %>" method="POST">
+                  <button value="delete" class="container bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition">Delete</button>
+                </form>
+
+              </div>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+
+    </main>
+  </body>
+</html>

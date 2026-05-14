@@ -1,0 +1,104 @@
+<!-- header -->
+<%- include('../partials/head') %>
+</head>
+
+<body class="bg-gray-100">
+
+  <!-- navbar -->
+  <%- include('../partials/nav') %>
+
+  <!-- Hero Section -->
+  <header class="bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 py-14 shadow-md">
+    <div class="max-w-7xl mx-auto px-4 text-center">
+      <h2 class="text-4xl md:text-5xl font-bold text-gray-800">
+        Welcome to Airbnb
+      </h2>
+
+      <p class="mt-4 text-lg text-gray-600">
+        Find your next stay from our curated homes.
+      </p>
+    </div>
+  </header>
+
+  <!-- Main Section -->
+  <main class="max-w-7xl mx-auto px-4 py-10">
+
+    <!-- Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+      <% registerHome.forEach(home => { %>
+
+        <!-- Card -->
+        <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
+
+          <!-- Image -->
+          <div class="overflow-hidden">
+            <img
+              src="<%= home.photo %>"
+              alt="<%= home.housename %>"
+              class="w-full h-56 object-cover hover:scale-105 transition-transform duration-300"
+            />
+          </div>
+
+          <!-- Content -->
+          <div class="p-5">
+
+            <!-- House Name -->
+            <h3 class="text-2xl font-semibold text-gray-800 mb-3">
+              <%= home.housename %>
+            </h3>
+
+            <!-- Location -->
+            <p class="text-gray-600 mb-2">
+              📍
+              <span class="font-medium text-gray-800">
+                <%= home.location %>
+              </span>
+            </p>
+
+            <!-- Price -->
+            <p class="mb-2 text-lg">
+              <span class="font-bold text-green-600">
+                $<%= home.price %>
+              </span>
+              <span class="text-gray-500 text-sm"> / night</span>
+            </p>
+
+            <!-- Rating -->
+            <div class="flex items-center gap-1 mb-5">
+              <span class="text-yellow-400 text-xl">★</span>
+              <span class="font-medium text-gray-700">
+                <%= home.rating %>
+              </span>
+            </div>
+
+            <!-- Buttons -->
+            <div class="flex gap-3">
+
+              <a
+                href="/home/<%= home._id %>"
+                class="w-1/2 text-center bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-xl font-medium transition"
+              >
+                Details
+              </a>
+
+              <a
+                href="/bookings"
+                class="w-1/2 text-center bg-green-500 hover:bg-green-600 text-white py-2 rounded-xl font-medium transition"
+              >
+                Book Now
+              </a>
+
+            </div>
+
+          </div>
+        </div>
+
+      <% }) %>
+
+    </div>
+
+  </main>
+
+</body>
+</html>

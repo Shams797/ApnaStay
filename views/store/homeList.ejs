@@ -1,0 +1,109 @@
+<!-- Header -->
+<%- include('../partials/head') %>
+</head>
+
+<body class="bg-gray-100 min-h-screen">
+
+  <!-- Navbar -->
+  <%- include('../partials/nav') %>
+
+  <!-- Hero Section -->
+  <header class="bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 shadow-md">
+    <div class="max-w-7xl mx-auto px-4 py-14 text-center">
+
+      <h1 class="text-4xl sm:text-5xl font-bold text-gray-800">
+        Home List
+      </h1>
+
+      <p class="mt-4 text-lg text-gray-600">
+        Explore places hosted by our community.
+      </p>
+
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="max-w-7xl mx-auto px-4 py-10">
+
+    <!-- Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+      <% registerHome.forEach(homes => { %>
+
+        <!-- Card -->
+        <div class="bg-white/90 backdrop-blur rounded-2xl overflow-hidden shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-gray-100">
+
+          <!-- Image -->
+          <div class="overflow-hidden">
+            <img
+              src="<%= homes.photo %>"
+              alt="<%= homes.housename %>"
+              class="w-full h-56 object-cover hover:scale-110 transition-transform duration-500"
+            />
+          </div>
+
+          <!-- Card Content -->
+          <div class="p-5">
+
+            <!-- House Name -->
+            <h3 class="text-2xl font-semibold text-gray-800 mb-3">
+              <%= homes.housename %>
+            </h3>
+
+            <!-- Location -->
+            <p class="flex items-center text-gray-600 mb-2">
+              <span class="mr-2">📍</span>
+              <span class="font-medium text-gray-700">
+                <%= homes.location %>
+              </span>
+            </p>
+
+            <!-- Price -->
+            <p class="text-lg mb-3">
+              <span class="text-green-600 font-bold text-2xl">
+                $<%= homes.price %>
+              </span>
+              <span class="text-gray-500 text-sm">
+                / night
+              </span>
+            </p>
+
+            <!-- Rating -->
+            <div class="flex items-center gap-1 mb-5">
+              <span class="text-yellow-400 text-xl">★</span>
+
+              <span class="font-medium text-gray-700">
+                <%= homes.rating %>
+              </span>
+            </div>
+
+            <!-- Buttons -->
+            <div class="flex gap-3 items-center">
+
+              <!-- View Details -->
+              <a
+                href="/home/<%= homes._id %>"
+                class="flex-1 bg-blue-500 hover:bg-blue-600 text-white text-center py-2.5 rounded-xl font-medium transition duration-300"
+              >
+                View Details
+              </a>
+
+              <!-- Favourite -->
+              <div class="flex items-center justify-center">
+                <%- include('../partials/favourite',{home:homes}) %>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      <% }) %>
+
+    </div>
+
+  </main>
+
+</body>
+</html>

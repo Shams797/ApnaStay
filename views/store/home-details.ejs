@@ -1,0 +1,60 @@
+<%- include('../partials/head') %>
+  </head>
+  <body>
+      <!-- nav bar -->
+      <%- include('../partials/nav') %>
+
+    <header class="bg-gradient-to-r from-blue-100 to-purple-100 py-10">
+      <div class="max-w-6xl mx-auto px-4">
+        <h1 class="text-3xl sm:text-4xl font-bold text-center text-slate-900">Detail of <%= home.housename %></h1>
+        <p class="mt-3 text-center text-slate-700">A quick overview before you book.</p>
+      </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 py-10">
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+        <div class="grid grid-cols-1 md:grid-cols-2">
+          <div class="bg-slate-50">
+            <img src="<%= home.photo %>" alt="<%= home.housename %>" class="w-full h-full object-cover" />
+          </div>
+
+          <div class="p-7">
+            <h2 class="text-2xl font-bold text-slate-900"><%= home.housename %></h2>
+
+            <div class="mt-4 flex items-center gap-2 text-slate-700">
+              <span class="text-yellow-500">★</span>
+              <span class="font-semibold"><%= home.rating %></span>
+            </div>
+
+            <p class="mt-3 text-slate-600">
+              📍 <span class="font-medium"><%= home.location %></span>
+            </p>
+
+            <p class="mt-5 text-3xl font-extrabold text-emerald-600">$<%= home.price %></p>
+
+            <p class="mt-4 text-slate-600">
+              <span class="font-semibold">Reviews:</span> <%= home.review %>
+            </p>
+
+            <p class="mt-4 text-slate-600">
+              <span class="font-semibold">Description:</span> <%= home.description %>
+            </p>
+          
+
+            <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <a
+                href="/bookings"
+                class="inline-flex items-center justify-center rounded-xl bg-blue-600 px-4 py-2 text-white font-semibold hover:bg-blue-700 transition"
+              >
+                Book now
+              </a>
+              <a
+                href="/homeList"
+                class="inline-flex items-center justify-center rounded-xl bg-slate-100 px-4 py-2 text-slate-900 font-semibold hover:bg-slate-200 transition"
+              >
+                Back to list
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
