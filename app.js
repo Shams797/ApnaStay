@@ -102,7 +102,7 @@ const port=3000;
 mongoose.connect(DB_PATH).then(()=>{
   console.log("connected to database mongoose successfully");
   app.listen(port,()=>{
-    console.log(`server is running on http://localhost:${port}`)
+    console.log(`server is running on port ${PORT}`);
   })
 }).catch(err=>{
     console.log("error in connecting to database",err);
