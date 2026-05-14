@@ -26,10 +26,12 @@ const app=express();
 app.set('view engine','ejs');
 app.set('views','views');
 
-store = MongoDBStore.create({
+const store = MongoDBStore.create({
   mongoUrl: DB_PATH,
   collection: 'sessions'
 });
+
+app.use(express.urlencoded({ extended: true }))
 
 
 app.use(session({
@@ -71,7 +73,8 @@ const multerOptions={
   storage,fileFilter
 }
 //body parser
-app.use(express.urlencoded())
+// app.use(express.urlencoded())
+// app.use(express.urlencoded({ extended: true }))
 app.use(multer(multerOptions).single('photo'))
 
 
