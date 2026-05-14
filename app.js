@@ -31,8 +31,6 @@ const store = MongoDBStore.create({
   collection: 'sessions'
 });
 
-app.use(express.urlencoded({ extended: true }))
-
 
 app.use(session({
   secret:"shams works hard",
@@ -74,7 +72,7 @@ const multerOptions={
 }
 //body parser
 // app.use(express.urlencoded())
-// app.use(express.urlencoded({ extended: true }))
+app.use(express.urlencoded({ extended: true }))
 app.use(multer(multerOptions).single('photo'))
 
 
